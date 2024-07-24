@@ -1,19 +1,20 @@
 import requests
 import os
 from dotenv import load_dotenv
-
+#------------------Подгружение данных из .env----------------------
 load_dotenv()
-
+#------------------Получение API-TOKEN для взаимодействие с площадкой----------------------
 api_key = os.getenv("API_TOKEN")
-
+#------------------Ссылка для получение json объекта----------------------
 base_url = os.getenv("BASE_URL")
-
+#------------------Прокси для сайта----------------------
 proxies = {
         'http': os.getenv("PROXY"),
         'https': os.getenv("PROXY"),
     }
 
 
+#------------------Получение данных о фильме/сериале----------------------
 def get_media(media_type: str, id_genre: str, page: str):
     params = {
         'api_key': api_key,
@@ -38,10 +39,8 @@ def get_media(media_type: str, id_genre: str, page: str):
     except requests.exceptions.RequestException:
         return get_media(media_type, id_genre, page)
 
-    except Exception:
-        pass
 
-
+#------------------Получение картинки постера----------------------
 def get_poster(poster_path: str):
     poster_base_url = "https://image.tmdb.org/t/p/"
     poster_size = "w500"  # Выберите размер постера

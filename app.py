@@ -5,7 +5,7 @@ import logging
 from aiogram import Bot, Dispatcher
 from handlers import router
 from dotenv import load_dotenv
-from models import async_main, shutdown, Session
+from models import async_main
 
 
 async def main() -> None:
@@ -21,5 +21,4 @@ if __name__ == "__main__":
         logging.basicConfig(level=logging.INFO, stream=sys.stdout)
         asyncio.run(main())
     except KeyboardInterrupt:
-        Session.close()
         print('Exit')
